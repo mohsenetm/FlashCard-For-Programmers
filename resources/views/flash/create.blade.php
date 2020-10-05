@@ -6,19 +6,20 @@
             transition: all 2s;
         }
     </style>
+    <div class="col-12 btn btn-light">{{$deckTitle}}</div>
     <div class="container" id="insert">
         <div class="row">
-            <label class="col-lg-12">Title</label>
+            <label class="col-lg-12">عنوان</label>
             <textarea class="col-lg-12 form-control" style="margin: auto;text-align:right;direction: rtl;"
                       v-model="title">
             </textarea>
-            <textarea class="col-lg-12 form-control" style="" @click="changeHeight" ref="html" v-model="html"
+            <textarea class="col-lg-12 form-control" style="direction: ltr;text-align: left;" @click="changeHeight" ref="html" v-model="html"
                       placeholder="html"></textarea>
-            <textarea class="col-lg-12 form-control" @click="changeHeight" v-model="php"
+            <textarea class="col-lg-12 form-control" style="direction: ltr;text-align: left;" @click="changeHeight" v-model="php"
                       placeholder="php"></textarea>
-            <textarea class="col-lg-12 form-control" @click="changeHeight" v-model="javascript"
+            <textarea class="col-lg-12 form-control" style="direction: ltr;text-align: left;" @click="changeHeight" v-model="javascript"
                       placeholder="javascript"></textarea>
-            <textarea class="col-lg-12 form-control" @click="changeHeight" v-model="mysql"
+            <textarea class="col-lg-12 form-control" style="direction: ltr;text-align: left;" @click="changeHeight" v-model="mysql"
                       placeholder="mysql"></textarea>
             <div class=" col-lg-12 alert" :class="{'alert-success' : status ,'alert-danger': !status }" style="text-align: right;"  v-show="msg">@{{ msg }}</div>
             <button @click="store" class="btn btn-danger">ذخیره</button>

@@ -13,8 +13,9 @@ class FlashController extends Controller
 {
     public function create($deck)
     {
-        $countFlash=Flash::where('created_at','>=', \Carbon\Carbon::now()->subDay(1))->count();
-        return view('flash.create',compact('countFlash','deck'));
+        $countFlash=Flash::where('deck_id',$deck)->count();
+        $deckTitle=Deck::find($deck)->title;
+        return view('flash.create',compact('countFlash','deck','deckTitle'));
     }
 
     public function store(Request $request){
@@ -67,6 +68,23 @@ class FlashController extends Controller
     public function read($id)
     {
         $flashes = Flash::where(['user_id'=>\Auth::id(),'deck_id'=>$id])->get();
+        $output=array();
+        foreach ($flashes as $flash){
+            $checkFlash=$this->checkDay($flash);
+            if($checkFlash) {
+                array_push($output, $checkFlash);
+            }
+        }
+        if(count($output)>2) {
+            return view('flash.read', ['flashes' => $output]);
+        }else{
+            return 'flash card be andaze kafi mojood nist';
+        }
+    }
+
+    public function readAll()
+    {
+        $flashes = Flash::where(['user_id'=>\Auth::id()])->get();
         $output=array();
         foreach ($flashes as $flash){
             $checkFlash=$this->checkDay($flash);

@@ -18,5 +18,6 @@ Route::middleware('auth')->resource('decks' , \App\Http\Controllers\DeckControll
 Route::middleware('auth')->resource('decks.flash' , \App\Http\Controllers\FlashController::class)->shallow();
 
 Route::middleware('auth')->get('read/{id}',[\App\Http\Controllers\FlashController::class,'read'])->name('flash.read');
+Route::middleware('auth')->get('read-all/',[\App\Http\Controllers\FlashController::class,'readAll'])->name('flash.read.all');
 Route::middleware('auth')->post('stored',[\App\Http\Controllers\FlashController::class,'stored'])->name('flash.stored');
 Route::redirect('/','decks/');
