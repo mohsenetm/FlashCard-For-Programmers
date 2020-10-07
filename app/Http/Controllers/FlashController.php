@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Deck;
 use App\Models\Flash;
 use App\Models\FlashTime;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
+
 
 class FlashController extends Controller
 {
     public function create($deck)
     {
-        $countFlash=Flash::where('deck_id',$deck)->count();
+        $countFlash=Flash::whereDeckId($deck)->count();
         $deckTitle=Deck::find($deck)->title;
         return view('flash.create',compact('countFlash','deck','deckTitle'));
     }
@@ -40,10 +41,10 @@ class FlashController extends Controller
         return view('flash.index',['flashes'=>$flashes]);
     }
 
-    public function freeRead(){
-        $flashes = DB::table('flashes')->orderBy('created_at', 'desc')->where('deleted_at',null)->paginate(30);
-        return view('flash.free_read',['flashes'=>$flashes]);
-    }
+//    public function freeRead(){
+//        $flashes = DB::table('flashes')->orderBy('created_at', 'desc')->where('deleted_at',null)->paginate(30);
+//        return view('flash.free_read',['flashes'=>$flashes]);
+//    }
 
     public function edit(Flash $flash){
         return view('flash.update',['flash'=>$flash]);
@@ -67,7 +68,7 @@ class FlashController extends Controller
 
     public function read($id)
     {
-        $flashes = Flash::where(['user_id'=>\Auth::id(),'deck_id'=>$id])->get();
+        $flashes = Flash::where(['user_id'=> Auth::id(),'deck_id'=>$id])->get();
         $output=array();
         foreach ($flashes as $flash){
             $checkFlash=$this->checkDay($flash);
@@ -84,7 +85,7 @@ class FlashController extends Controller
 
     public function readAll()
     {
-        $flashes = Flash::where(['user_id'=>\Auth::id()])->get();
+        $flashes = Flash::whereUserId(Auth::id())->get();
         $output=array();
         foreach ($flashes as $flash){
             $checkFlash=$this->checkDay($flash);
@@ -100,10 +101,9 @@ class FlashController extends Controller
     }
 
     public function checkDay($flash){
-        $deck=Deck::find($flash->deck_id);
         $timePeriod=Deck::find($flash->deck_id)->time_period;
         $now=Carbon::now()->format('U');
-        $checkFlashTime=FlashTime::where('flash_id',$flash->id)->first();
+        $checkFlashTime=FlashTime::whereFlashId($flash->id)->first();
         if(!$checkFlashTime){
             return $flash;
         }
@@ -122,9 +122,9 @@ class FlashController extends Controller
         $questAnswers = explode(',', $request->quest_answers);
         foreach ($quests as $key => $quest) {
             if ($questAnswers[$key] == 0) {
-                FlashTime::where('flash_id', $quest)->delete();
+                FlashTime::whereFlashId( $quest)->delete();
             } else {
-                $checkFlashTime = FlashTime::where('flash_id', $quest)->first();
+                $checkFlashTime = FlashTime::whereFlashId( $quest)->first();
                 if (!$checkFlashTime) {
                     FlashTime::create([
                         'flash_id' => $quest,

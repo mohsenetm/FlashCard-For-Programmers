@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DeckRequest;
 use App\Models\Deck;
-use Illuminate\Http\Request;
 
 class DeckController extends Controller
 {

@@ -20,7 +20,7 @@ class UserController extends Controller
                 'name' => 'required|min:8',
                 'password' => 'required|min:8'
             ])->validate();
-            $user = User::where('name', $request->name)->first();
+            $user = User::whereName( $request->name)->first();
             if ($user) {
                 if (Hash::check($request->password, $user->password)) {
                     Auth::loginUsingId($user->id);

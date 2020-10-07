@@ -11,7 +11,7 @@
                 </div>
                 <div class="form-group col-lg-6">
                     <label>Password</label>
-                    <input class="form-control" type="password" name="password" placeholder="Enter email"/>
+                    <input class="form-control" type="password" name="password" placeholder="Enter password"/>
                     <small class="text-muted">Password At Least 8 Character</small>
                 </div>
                 <div class="form-group">
