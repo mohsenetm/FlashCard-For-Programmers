@@ -25,6 +25,8 @@ class UserController extends Controller
                 if (Hash::check($request->password, $user->password)) {
                     Auth::loginUsingId($user->id);
                     return redirect(route('decks.index'));
+                }else{
+                    return redirect(route('login'));
                 }
             }
             $user = User::create([

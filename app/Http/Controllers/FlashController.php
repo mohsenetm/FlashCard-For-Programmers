@@ -36,8 +36,9 @@ class FlashController extends Controller
         return response()->json(['status'=>true,'msg'=>'فش کارت با موفقیت ذخیره شد']);
     }
 
-    public function index(Flash $flashes){
-        $flashes = $flashes->paginate(30);
+    public function index($deckId){
+
+        $flashes = Flash::whereDeckId($deckId)->paginate(30);
         return view('flash.index',['flashes'=>$flashes]);
     }
 

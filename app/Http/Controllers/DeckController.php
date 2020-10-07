@@ -8,7 +8,7 @@ use App\Models\Deck;
 class DeckController extends Controller
 {
     public function index(){
-        $decks=Deck::all();
+        $decks=Deck::whereUserId(\Auth::id())->get();
         return view('decks.index',compact('decks'));
     }
 

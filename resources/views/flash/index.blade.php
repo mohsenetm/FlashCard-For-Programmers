@@ -8,22 +8,22 @@
                     {{$flash->title}}
                 </div>
                 @if($flash->html)
-                <div class="col-lg-12">
+                <div class="col-lg-12" style="direction:ltr;text-align:left;">
                     <pre><code class="html">{{$flash->html}}</code></pre>
                 </div>
                 @endif
                 @if($flash->php)
-                <div class="col-lg-12">
+                <div class="col-lg-12" style="direction:ltr;text-align:left;">
                     <pre><code class="php">{{$flash->php}}</code></pre>
                 </div>
                 @endif
                 @if($flash->javascript)
-                <div class="col-lg-12">
+                <div class="col-lg-12" style="direction:ltr;text-align:left;">
                     <pre><code class="javascript">{{$flash->javascript}}</code></pre>
                 </div>
                 @endif
                 @if($flash->mysql)
-                <div class="col-lg-12">
+                <div class="col-lg-12" style="direction:ltr;text-align:left;">
                     <pre><code class="mysql">{{$flash->mysql}}</code></pre>
                 </div>
                 @endif

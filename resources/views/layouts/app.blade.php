@@ -3,7 +3,6 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-@livewireStyles
 </head>
 <div class="container">
     @auth()
@@ -11,5 +10,4 @@
     @endauth
 </div>
 @yield('content')
-@livewireScripts
 @yield('script')
