@@ -21,3 +21,6 @@ Route::middleware('auth')->get('read/{id}',[\App\Http\Controllers\FlashControlle
 Route::middleware('auth')->get('read-all/',[\App\Http\Controllers\FlashController::class,'readAll'])->name('flash.read.all');
 Route::middleware('auth')->post('stored',[\App\Http\Controllers\FlashController::class,'stored'])->name('flash.stored');
 Route::redirect('/','decks/');
+
+Route::get('chart',[\App\Http\Controllers\ChartController::class,'index'])->name('chart.index');
+Route::post('chart/time',[\App\Http\Controllers\ChartController::class,'time'])->name('chart.list');

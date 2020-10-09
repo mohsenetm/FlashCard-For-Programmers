@@ -10,13 +10,13 @@
                           name="title">{{$flash->title}}
             </textarea>
                 <div class="row">
-                <textarea class="col-lg-6 form-control" style="height: 300px;" name="html"
+                <textarea class="col-lg-6 form-control" style="height: 300px;direction:ltr;text-align:left" name="html"
                           placeholder="html">{{$flash->html}}</textarea>
-                    <textarea class="col-lg-6 form-control" style="height: 300px;" name="php"
+                    <textarea class="col-lg-6 form-control" style="height: 300px;direction:ltr;text-align:left" name="php"
                               placeholder="php">{{$flash->php}}</textarea>
-                    <textarea class="col-lg-6 form-control" style="height: 300px;" name="javascript"
+                    <textarea class="col-lg-6 form-control" style="height: 300px;direction:ltr;text-align:left" name="javascript"
                                placeholder="javascript">{{$flash->javascript}}</textarea>
-                    <textarea class="col-lg-6 form-control" style="height: 300px;" name="mysql"
+                    <textarea class="col-lg-6 form-control" style="height: 300px;direction:ltr;text-align:left" name="mysql"
                               placeholder="mysql">{{$flash->mysql}}</textarea>
                     <input type="hidden" value="{{$flash->id}}" name="id">
                 </div>
