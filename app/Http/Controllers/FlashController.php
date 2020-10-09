@@ -138,6 +138,6 @@ class FlashController extends Controller
                 }
             }
         }
-        return redirect(route('flash.read'));
+        return redirect(route('decks.index'));
     }
 }
