@@ -57,4 +57,8 @@ class Deck extends Model
         return $value;
     }
 
+    public function Flash(){
+        return $this->hasMany(Flash::class);
+    }
+
 }

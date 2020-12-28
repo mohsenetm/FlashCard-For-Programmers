@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DeckRequest;
 use App\Models\Deck;
+use Illuminate\Support\Facades\DB;
 
 class DeckController extends Controller
 {
     public function index(){
-        $decks=Deck::whereUserId(\Auth::id())->get();
+        $decks=DB::select('select decks.*,COUNT(flashes.id) as tedad from decks INNER join flashes on decks.id=flashes.deck_id GROUP by flashes.deck_id');
         return view('decks.index',compact('decks'));
     }
 

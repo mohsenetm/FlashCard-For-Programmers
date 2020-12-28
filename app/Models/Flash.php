@@ -64,4 +64,5 @@ class Flash extends Model
     public function getUpdatedAtAttribute($value){
         return $value;
     }
+
 }

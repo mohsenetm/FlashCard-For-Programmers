@@ -9,7 +9,8 @@
             @foreach($decks as $deck)
             <div class="row" style="padding-bottom: 10px;padding-top: 10px;">
                 <div class="col-lg-2">{{$deck->title}}</div>
-                <div class="col-lg-2">{{$deck->time_period}}</div>
+                <div class="col-lg-1">{{$deck->time_period}}</div>
+                <div class="col-lg-1">{{$deck->tedad}}</div>
                 <div class="col-lg-8"><a class="btn btn-success" href="{{route('decks.edit',$deck->id)}}">ویرایش</a>
                 <form method="post" action="{{route('decks.destroy',$deck->id)}}" style="display: inline-block">
                     @csrf
